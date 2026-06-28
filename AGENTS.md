@@ -30,14 +30,7 @@ dotfiles/
 
 ## Install
 
-```bash
-./install.sh
-```
-
-This symlinks:
-- `nvim/`  → `~/.config/nvim`
-- `tmux/`  → `~/.config/tmux`
-- `agent/` → `~/.config/agent`
+Run `./install.sh` to set up the dotfiles on a new machine.
 
 ## Neovim
 
