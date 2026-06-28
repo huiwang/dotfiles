@@ -4,10 +4,6 @@
 
 This is my personal dotfiles repository for macOS.
 
-## Preferences
-
-- This config philosophy is **minimalist**: optimized for reading/reviewing LLM-generated code, not writing it
-
 ## Repository Structure
 
 ```
