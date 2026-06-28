@@ -11,12 +11,4 @@ vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 
--- Automatically reload files changed outside of Neovim
-vim.opt.autoread = true
-
--- Check for file changes periodically without requiring focus
-local autoread_timer = vim.loop.new_timer()
-autoread_timer:start(1000, 1000, vim.schedule_wrap(function()
-  vim.cmd("checktime")
-end))
 

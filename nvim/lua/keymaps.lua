@@ -15,10 +15,6 @@ keymap("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Kill buffer" })
 -- Delete all buffers except current
 keymap("n", "<leader>bo", "<cmd>%bd|e#|bd#<CR>", { desc = "Kill other buffers" })
 
--- Format current file
-keymap({ "n", "v" }, "<leader>fm", function()
-  require("conform").format({ async = true })
-end, { desc = "Format file" })
 
 -- Clear search highlights
 keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
