@@ -49,6 +49,7 @@ link_with_refs() {
   done
 }
 
+link ghostty           "$HOME/.config/ghostty"
 link nvim              "$HOME/.config/nvim"
 link tmux              "$HOME/.config/tmux"
 link agent             "$HOME/.config/agent"
