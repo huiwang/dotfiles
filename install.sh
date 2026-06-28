@@ -25,6 +25,7 @@ link() {
   echo "  linked  $dest → $src"
 }
 
-link nvim   "$HOME/.config/nvim"
-link tmux   "$HOME/.config/tmux"
-link agent  "$HOME/.config/agent"
+link nvim              "$HOME/.config/nvim"
+link tmux              "$HOME/.config/tmux"
+link agent             "$HOME/.config/agent"
+link agent/AGENTS.md   "$HOME/.pi/agent/AGENTS.md"
