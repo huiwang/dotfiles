@@ -6,8 +6,6 @@ This is my personal dotfiles repository for macOS.
 
 ## Preferences
 
-- Be **concise** in answers
-- Prefer **minimal, focused** changes — don't over-engineer
 - This config philosophy is **minimalist**: optimized for reading/reviewing LLM-generated code, not writing it
 
 ## Repository Structure
