@@ -3,29 +3,28 @@ set -e
 
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Map of dotfiles module → symlink target
-declare -A LINKS=(
-  ["$DOTFILES/nvim"]="$HOME/.config/nvim"
-  ["$DOTFILES/tmux"]="$HOME/.config/tmux"
-  ["$DOTFILES/agent"]="$HOME/.config/agent"
-)
+link() {
+  local src="$DOTFILES/$1"
+  local dest="$2"
 
-for src in "${!LINKS[@]}"; do
-  dest="${LINKS[$src]}"
-
-  # If dest is already the correct symlink, skip
+  # Already the correct symlink — skip
   if [ -L "$dest" ] && [ "$(readlink "$dest")" = "$src" ]; then
-    echo "  ok  $dest"
-    continue
+    echo "  ok      $dest"
+    return
   fi
 
-  # Back up any existing real directory
+  # Back up any existing real directory or file
   if [ -e "$dest" ] && [ ! -L "$dest" ]; then
-    backup="${dest}.bak.$(date +%s)"
+    local backup="${dest}.bak.$(date +%s)"
     mv "$dest" "$backup"
-    echo "  backed up  $dest → $backup"
+    echo "  backup  $dest → $backup"
   fi
 
+  mkdir -p "$(dirname "$dest")"
   ln -sf "$src" "$dest"
   echo "  linked  $dest → $src"
-done
+}
+
+link nvim   "$HOME/.config/nvim"
+link tmux   "$HOME/.config/tmux"
+link agent  "$HOME/.config/agent"
