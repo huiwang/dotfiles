@@ -1,8 +1,8 @@
 # AGENTS.md — Dotfiles
 
-## Who I Am
+## About
 
-My name is **Hui**. This is my personal dotfiles repository for macOS.
+This is my personal dotfiles repository for macOS.
 
 ## Preferences
 
