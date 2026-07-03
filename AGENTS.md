@@ -35,6 +35,7 @@ Run `./install.sh` to set up the dotfiles on a new machine.
 ## Tmux
 
 - Config directory exists but is currently empty — a blank slate
+- When discussing tmux keybindings, always say **prefix** instead of `Ctrl+b` — the prefix key is customized
 
 ## Agent Config (`~/.config/agent`)
 
