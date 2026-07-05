@@ -13,8 +13,15 @@ keymap("n", "<leader>y", '"+y', { desc = "Copy to clipboard" })
 keymap("n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Prev buffer" })
 keymap("n", "<S-l>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
 
--- Kill current buffer
-keymap("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Kill buffer" })
+-- Kill current buffer (switch to prev first to avoid neo-tree going fullscreen)
+keymap("n", "<leader>bd", function()
+  local bufs = vim.fn.getbufinfo({ buflisted = 1 })
+  if #bufs > 1 then
+    vim.cmd("bp|bd#")
+  else
+    vim.cmd("bd")
+  end
+end, { desc = "Kill buffer" })
 
 -- Delete all buffers except current
 keymap("n", "<leader>bo", "<cmd>%bd|e#|bd#<CR>", { desc = "Kill other buffers" })
