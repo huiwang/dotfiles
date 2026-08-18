@@ -27,5 +27,8 @@ end, { desc = "Kill buffer" })
 keymap("n", "<leader>bo", "<cmd>%bd|e#|bd#<CR>", { desc = "Kill other buffers" })
 
 
+-- Manually reload buffer from disk
+keymap("n", "<leader>rr", "<cmd>checktime<CR>", { desc = "Reload file from disk" })
+
 -- Clear search highlights
 keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
