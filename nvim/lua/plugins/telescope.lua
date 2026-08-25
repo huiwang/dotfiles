@@ -58,7 +58,7 @@ return {
       end, { desc = 'Find files (recursively, including hidden and gitignored)' })
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Live Grep (search contents)' })
       vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Find Buffers (open files)' })
-      vim.keymap.set('n', '<leader>fs', builtin.git_status, { desc = 'Find agent-changed files' })
+      vim.keymap.set('n', '<leader>fs', builtin.git_status, { desc = 'Find changed files' })
     end
   },
 
