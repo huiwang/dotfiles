@@ -53,7 +53,7 @@ return {
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>ff', function()
         builtin.find_files({
-          find_command = { 'fd', '--type', 'f', '--follow' },
+          find_command = { 'rg', '--files', '--hidden' },
         })
       end, { desc = 'Find files (recursively, including hidden and gitignored)' })
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Live Grep (search contents)' })
