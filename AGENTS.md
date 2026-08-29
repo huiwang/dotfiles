@@ -18,8 +18,7 @@ dotfiles/
 │   └── lazy-lock.json
 ├── tmux/               # Tmux configuration (currently empty)
 └── agent/              # AI agent memory & config
-    ├── AGENTS.md       # Global agent memory (symlinked to ~/.config/agent/ and ~/.pi/agent/)
-    └── RTK.md          # RTK (Rust Token Killer) usage reference
+    └── AGENTS.md       # Global agent memory (symlinked to ~/.config/agent/ and ~/.pi/agent/)
 ```
 
 ## Install
@@ -40,4 +39,3 @@ Run `./install.sh` to set up the dotfiles on a new machine.
 ## Agent Config (`~/.config/agent`)
 
 - `AGENTS.md` — global agent memory loaded by AI tools (also symlinked to `~/.pi/agent/AGENTS.md`)
-- `RTK.md` — reference for RTK, a token-optimizing CLI proxy (60–90% token savings)
