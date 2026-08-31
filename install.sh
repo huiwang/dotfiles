@@ -38,7 +38,11 @@ link_with_refs() {
   dest_dir="$(dirname "$dest")"
 
   # Find all @Filename references in the source file
-  grep -oE '@[^[:space:]]+' "$DOTFILES/$src_rel" | sed 's/^@//' | while read -r ref; do
+  local refs
+  refs="$(grep -oE '@[^[:space:]]+' "$DOTFILES/$src_rel" | sed 's/^@//')"
+
+  echo "$refs" | while read -r ref; do
+    [ -z "$ref" ] && continue
     local ref_rel
     ref_rel="$(dirname "$src_rel")/$ref"
     if [ -e "$DOTFILES/$ref_rel" ]; then
@@ -46,6 +50,23 @@ link_with_refs() {
     else
       echo "  missing $DOTFILES/$ref_rel (referenced in $src_rel)"
     fi
+  done
+
+  # Prune stale symlinks in dest_dir that point into src_dir but are no
+  # longer referenced (e.g. deleted files like RTK.md)
+  local f base main_base
+  main_base="$(basename "$dest")"
+  for f in "$dest_dir"/*; do
+    [ -L "$f" ] || continue
+    base="$(basename "$f")"
+    [ "$base" = "$main_base" ] && continue
+    case "$(readlink "$f")" in
+      "$src_dir"/*)
+        if ! echo "$refs" | grep -qx "$base"; then
+          rm -v "$f"
+        fi
+        ;;
+    esac
   done
 }
 
