@@ -15,6 +15,13 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
   command = "silent! checktime",
 })
 
+-- CursorHold only fires after keypresses, so poll for external changes
+-- while Neovim is unfocused (e.g. in a tmux side panel).
+local checktime_timer = vim.uv.new_timer()
+checktime_timer:start(0, 1000, vim.schedule_wrap(function()
+  vim.cmd("silent! checktime")
+end))
+
 -- Keep review context and local recovery history.
 vim.opt.scrolloff = 6
 vim.opt.undofile = true
