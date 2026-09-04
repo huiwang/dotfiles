@@ -7,16 +7,9 @@ vim.g.maplocalleader = " "
 vim.opt.number = true
 vim.opt.signcolumn = "yes"
 
--- Agent processes often modify files behind Neovim's back.
+-- Agent processes often modify files behind Neovim's back. Poll for
+-- changes since we're often unfocused (e.g. in a tmux side panel).
 vim.opt.autoread = true
-vim.opt.updatetime = 300
-vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
-  desc = "Reload files changed outside Neovim",
-  command = "silent! checktime",
-})
-
--- CursorHold only fires after keypresses, so poll for external changes
--- while Neovim is unfocused (e.g. in a tmux side panel).
 local checktime_timer = vim.uv.new_timer()
 checktime_timer:start(0, 1000, vim.schedule_wrap(function()
   vim.cmd("silent! checktime")
