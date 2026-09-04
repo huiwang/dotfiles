@@ -20,6 +20,10 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
 local checktime_timer = vim.uv.new_timer()
 checktime_timer:start(0, 1000, vim.schedule_wrap(function()
   vim.cmd("silent! checktime")
+  -- Redraw only outside insert mode to avoid cursor glitches while typing
+  if vim.fn.mode() ~= "i" then
+    vim.cmd("redraw")
+  end
 end))
 
 -- Keep review context and local recovery history.
